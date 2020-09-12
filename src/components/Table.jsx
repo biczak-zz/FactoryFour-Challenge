@@ -20,12 +20,46 @@ const TableContainer = styled.div`
 
 const Table = ({ endpoints }) => {
   const generateTableCells = endpoints.map((endpoint, index) => (
-    <div key={index}  className="table-cell">
+    <div key={index} className="table-cell">
       <Cell data={endpoint} />
     </div>
   ));
 
-  return <TableContainer>{generateTableCells}</TableContainer>;
+  return (
+    <TableContainer>
+      {generateTableCells}
+      <div className="table-cell">
+        <Cell
+          data={{
+            success: false,
+            hostname: 'invites',
+            message: 'Endpoint Unavailable. We apologize for the inconvenience.',
+            time: new Date().getTime(),
+          }}
+        />
+      </div>
+      <div className="table-cell">
+        <Cell
+          data={{
+            success: false,
+            hostname: 'messages',
+            message: 'Endpoint Unavailable. We apologize for the inconvenience.',
+            time: new Date().getTime(),
+          }}
+        />
+      </div>
+      <div className="table-cell">
+        <Cell
+          data={{
+            success: false,
+            hostname: 'users',
+            message: 'Endpoint Unavailable. We apologize for the inconvenience.',
+            time: new Date().getTime(),
+          }}
+        />
+      </div>
+    </TableContainer>
+  );
 };
 
 export default Table;

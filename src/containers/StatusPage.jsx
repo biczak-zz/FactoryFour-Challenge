@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Table from 'Components/Table';
 const { useInterval } = require('Util/useInterval.js');
+const config = require('../../config.json');
+
 const Container = styled.div`
   width: 100%;
   max-width: 100%;
@@ -41,7 +43,7 @@ const StatusPage = () => {
         updateState((state) => []);
       }
 
-      endpoints.forEach( async (endpoint) => {
+      endpoints.forEach(async (endpoint) => {
         await axios
           .get(`https://api.factoryfour.com/${endpoint}/health/status`)
           .then((response) => {
@@ -52,7 +54,7 @@ const StatusPage = () => {
           });
       });
     },
-    15000,
+    config.API_POLLING_INTERVAL * 1000,
     []
   );
 
@@ -60,6 +62,11 @@ const StatusPage = () => {
     <Container>
       <h1>Endpoint Statuses</h1>
       <Table endpoints={state} />
+      <h2>
+        This page updates every {config.API_POLLING_INTERVAL} seconds. If you wish to change this
+        rate, you can do so by changing the value of "API_POLLING_INTERVAL" in the 'config.json'
+        file.
+      </h2>
     </Container>
   );
 };

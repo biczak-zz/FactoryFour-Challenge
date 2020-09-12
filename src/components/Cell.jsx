@@ -11,6 +11,10 @@ const CellContainer = styled.div`
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.125);
 
+  &#error-cell {
+    border: 1px solid #dc3545 !important;
+  }
+
   .cell-top-row,
   .cell-bottom-row {
     width: 95%;
@@ -35,10 +39,10 @@ const CellContainer = styled.div`
 `;
 
 const Cell = ({ data }) => (
-  <CellContainer>
+  <CellContainer id={!data.success ? 'error-cell' : ''}>
     <div className="cell-top-row">
       <span className="endpoint-name">{data.hostname}</span>
-      <span className={data.success ? 'success' : 'error'}>{data.success || 'g'}</span>
+      <span className={data.success ? 'success' : 'error'}>{data.success ? 'OK!' : 'ERROR!'}</span>
     </div>
     <div className="cell-bottom-row">
       <span className="response-message">{data.message}</span>
