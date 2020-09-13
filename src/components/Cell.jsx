@@ -46,7 +46,7 @@ const Cell = ({ data }) => (
     </div>
     <div className="cell-bottom-row">
       <span className="response-message">{data.message}</span>
-      <span className="response-timestamp">{data.time}</span>
+      <span className="response-timestamp">{new Date(data.time).toLocaleString()}</span>
     </div>
   </CellContainer>
 );

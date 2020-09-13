@@ -27,7 +27,6 @@ const Table = ({ endpoints }) => {
 
   return (
     <TableContainer>
-      {generateTableCells}
       <div className="table-cell">
         <Cell
           data={{
@@ -58,6 +57,8 @@ const Table = ({ endpoints }) => {
           }}
         />
       </div>
+      <div></div>
+      {generateTableCells}
     </TableContainer>
   );
 };
